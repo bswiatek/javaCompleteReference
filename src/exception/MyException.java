@@ -1,0 +1,16 @@
+package exception;
+
+/**
+ * Created by bswiatek on 11.05.2016.
+ */
+public class MyException extends Exception {
+    private int detail;
+
+    MyException(int a){
+        detail = a;
+    }
+
+    public String toString(){
+        return "MyException[" + detail +"]";
+    }
+}

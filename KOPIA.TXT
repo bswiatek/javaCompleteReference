@@ -1,0 +1,3 @@
+to jest testowy plik
+druga jego linia
+koncowa linia
