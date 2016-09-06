@@ -14,7 +14,7 @@ public class Phonebook {
         boolean changed = false;
 
         try{
-            fin = new FileInputStream("ksiazkatel.dat");
+            fin = new FileInputStream("data/ksiazkatel.dat");
         } catch (FileNotFoundException e){
         }
 
@@ -40,7 +40,7 @@ public class Phonebook {
         } while (!name.equals("koniec"));
 
         if(changed){
-            FileOutputStream fout = new FileOutputStream("ksiazkatel.dat");
+            FileOutputStream fout = new FileOutputStream("data/ksiazkatel.dat");
             ht.store(fout, "Książka telefoniczna");
             fout.close();
         }
