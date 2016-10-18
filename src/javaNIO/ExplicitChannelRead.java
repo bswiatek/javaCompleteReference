@@ -8,16 +8,8 @@ import java.nio.channels.*;
 public class ExplicitChannelRead {
     public static void main(String[] args) {
         int count;
-        Path filepath = null;
 
-        try{
-            filepath = Paths.get("data/test.txt");
-        } catch (InvalidPathException e){
-            System.out.println("błąd ścieżki: " + e);
-            return;
-        }
-
-        try(SeekableByteChannel fChan = Files.newByteChannel(filepath)){
+        try(SeekableByteChannel fChan = Files.newByteChannel(Paths.get("data/test.txt"))){
             ByteBuffer mBuf = ByteBuffer.allocate(128);
             do{
                 count = fChan.read(mBuf);
@@ -29,6 +21,8 @@ public class ExplicitChannelRead {
                 }
             } while (count != -1);
             System.out.println();
+        } catch (InvalidPathException e){
+            System.out.println("błąd ścieżki: " + e);
         } catch (IOException e) {
             System.out.println("błąd we/wy: " +e);
         }
