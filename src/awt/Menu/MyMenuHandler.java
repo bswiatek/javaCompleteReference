@@ -16,7 +16,11 @@ public class MyMenuHandler implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
         String msg = "Wybrałeś opcję ";
         String arg = (String)e.getActionCommand();
-        if(arg.equals("Nowy...")) msg += "Nowy.";
+        if(arg.equals("Nowy...")) {
+            msg += "Nowy.";
+            SampleDialog d = new SampleDialog(menuFrame, "okno dialogowe: Nowy");
+            d.setVisible(true);
+        }
         else if (arg.equals("Otwórz...")) msg += "Otwórz.";
         else if (arg.equals("Zamknij")) msg += "Zamknij.";
         else if (arg.equals("Zakończ...")) msg += "Zakończ.";

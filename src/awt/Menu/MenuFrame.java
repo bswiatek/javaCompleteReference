@@ -69,5 +69,10 @@ public class MenuFrame extends Frame {
             g.drawString("Usuwanie błędów jest włączone", 10, 220);
         else
             g.drawString("Usuwanie błędów jest wyłączone", 10, 220);
+
+        if(test.getState())
+            g.drawString("Testowanie jest włączone", 10, 240);
+        else
+            g.drawString("Testowanie jest wyłączone", 10, 240);
     }
 }
