@@ -15,13 +15,10 @@ public class MyThread implements Runnable{
 
     @Override
     public void run() {
-        System.out.println("Wątek " + name + " rozpoczął fazę nr 1");
-        phsr.arriveAndAwaitAdvance();
+        while(!phsr.isTerminated()) {
+            System.out.println("Wątek " + name + " rozpoczął fazę nr " + phsr.getPhase());
 
-        System.out.println("Wątek " + name + " rozpoczął fazę nr 2");
-        phsr.arriveAndAwaitAdvance();
-
-        System.out.println("Wątek " + name + " rozpoczął fazę nr 3");
-        phsr.arriveAndDeregister();
+            phsr.arriveAndAwaitAdvance();
+        }
     }
 }
