@@ -1,9 +1,6 @@
 package Concurrent.Callable;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class CallableDemo {
     public static void main(String[] args) {
@@ -19,13 +16,15 @@ public class CallableDemo {
         f3 = es.submit(new Factorial(5));
 
         try {
-            System.out.println(f.get());
-            System.out.println(f2.get());
-            System.out.println(f3.get());
+            System.out.println(f.get(10, TimeUnit.MICROSECONDS));
+            System.out.println(f2.get(10, TimeUnit.MICROSECONDS));
+            System.out.println(f3.get(10, TimeUnit.MICROSECONDS));
         } catch (InterruptedException e) {
             System.out.println(e);
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (TimeoutException e) {
+            System.out.println("time out: " + e);
         }
 
         es.shutdown();
