@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class MenuDemo implements ActionListener {
 
@@ -19,10 +21,16 @@ public class MenuDemo implements ActionListener {
         JMenuBar jmb = new JMenuBar();
 
         JMenu jmFile = new JMenu("Plik");
-        JMenuItem jmiOpen = new JMenuItem("Otwórz");
-        JMenuItem jmiClose = new JMenuItem("Zamknij");
-        JMenuItem jmiSave = new JMenuItem("Zapisz");
-        JMenuItem jmiExit = new JMenuItem("Zakończ");
+        jmFile.setMnemonic(KeyEvent.VK_P);
+
+        JMenuItem jmiOpen = new JMenuItem("Otwórz", KeyEvent.VK_O);
+        jmiOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+        JMenuItem jmiClose = new JMenuItem("Zamknij", KeyEvent.VK_M);
+        jmiClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
+        JMenuItem jmiSave = new JMenuItem("Zapisz", KeyEvent.VK_Z);
+        jmiSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
+        JMenuItem jmiExit = new JMenuItem("Zakończ", KeyEvent.VK_K);
+        jmiOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.CTRL_DOWN_MASK));
         jmFile.add(jmiOpen);
         jmFile.add(jmiClose);
         jmFile.add(jmiSave);
@@ -33,21 +41,24 @@ public class MenuDemo implements ActionListener {
         JMenu jmOptions = new JMenu("Opcje");
 
         JMenu jmColors = new JMenu("Kolory");
-        JMenuItem jmiRed = new JMenuItem("Czerwony");
-        JMenuItem jmiGreen = new JMenuItem("Zielony");
-        JMenuItem jmiBlue = new JMenuItem("Niebieski");
+        JCheckBoxMenuItem jmiRed = new JCheckBoxMenuItem("Czerwony");
+        JCheckBoxMenuItem jmiGreen = new JCheckBoxMenuItem("Zielony");
+        JCheckBoxMenuItem jmiBlue = new JCheckBoxMenuItem("Niebieski");
         jmColors.add(jmiRed);
         jmColors.add(jmiGreen);
         jmColors.add(jmiBlue);
         jmOptions.add(jmColors);
 
         JMenu jmPriority = new JMenu("Priorytet");
-        JMenuItem jmiHigh = new JMenuItem("Wysoki");
-        JMenuItem jmiLow = new JMenuItem("Niski");
+        JRadioButtonMenuItem jmiHigh = new JRadioButtonMenuItem("Wysoki");
+        JRadioButtonMenuItem jmiLow = new JRadioButtonMenuItem("Niski");
         jmPriority.add(jmiHigh);
         jmPriority.add(jmiLow);
         jmOptions.add(jmPriority);
 
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(jmiHigh);
+        bg.add(jmiLow);
 
         JMenuItem jmiReset = new JMenuItem("Resetuj");
         jmOptions.addSeparator();
