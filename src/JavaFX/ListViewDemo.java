@@ -34,12 +34,18 @@ public class ListViewDemo extends Application {
 
         ListView<String> lvTransport = new ListView<>(transportTypes);
         lvTransport.setPrefSize(80,80);
+        lvTransport.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         MultipleSelectionModel<String> lvSelModel = lvTransport.getSelectionModel();
 
         lvSelModel.selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                response.setText("Wybrany środek transportu: " + newValue);
+                String selItems = "";
+                ObservableList<String> selected = lvTransport.getSelectionModel().getSelectedItems();
+                for(int i=0; i<selected.size(); i++)
+                    selItems += "\n " + selected.get(i);
+
+                response.setText("Wybrane środki transportu: " + selItems);
             }
         });
 
